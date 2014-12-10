@@ -13,6 +13,7 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
+#include "btConfig.h"
 #include "btSimpleBroadphase.h"
 #include "BulletCollision/BroadphaseCollision/btDispatcher.h"
 #include "BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
@@ -22,7 +23,6 @@ subject to the following restrictions:
 #include "LinearMath/btMatrix3x3.h"
 #include "LinearMath/btAabbUtil2.h"
 
-#include <new>
 
 extern int gOverlappingPairs;
 

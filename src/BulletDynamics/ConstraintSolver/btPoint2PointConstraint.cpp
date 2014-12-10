@@ -13,10 +13,9 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-
+#include "btConfig.h"
 #include "btPoint2PointConstraint.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
-#include <new>
 
 
 

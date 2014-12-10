@@ -831,9 +831,6 @@ void	btQuantizedBvh::assignInternalNodeFromLeafNode(int internalNode,int leafNod
 	}
 }
 
-//PCK: include
-#include <new>
-
 #if 0
 //PCK: consts
 static const unsigned BVH_ALIGNMENT = 16;

@@ -38,11 +38,10 @@ http://gimpact.sf.net
 */
 
 
-
+#include "btConfig.h"
 #include "btGeneric6DofSpring2Constraint.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "LinearMath/btTransformUtil.h"
-#include <new>
 
 
 

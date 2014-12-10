@@ -2,7 +2,7 @@
 #include "b3FixedConstraint.h"
 #include "Bullet3Collision/NarrowPhaseCollision/shared/b3RigidBodyData.h"
 #include "Bullet3Common/b3TransformUtil.h"
-#include <new>
+//#include <new>
 
 
 b3FixedConstraint::b3FixedConstraint(int rbA,int rbB, const b3Transform& frameInA,const b3Transform& frameInB)

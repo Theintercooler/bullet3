@@ -18,6 +18,7 @@ subject to the following restrictions:
 
 //It is not necessary (redundant) to refresh contact manifolds, this refresh has been moved to the collision algorithms.
 
+#include "btConfig.h"
 #include "btSequentialImpulseConstraintSolver.h"
 #include "BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
 
@@ -27,7 +28,6 @@ subject to the following restrictions:
 //#include "btJacobianEntry.h"
 #include "LinearMath/btMinMax.h"
 #include "BulletDynamics/ConstraintSolver/btTypedConstraint.h"
-#include <new>
 #include "LinearMath/btStackAlloc.h"
 #include "LinearMath/btQuickprof.h"
 //#include "btSolverBody.h"

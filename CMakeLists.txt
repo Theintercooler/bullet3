@@ -129,6 +129,12 @@ ENDIF (WIN32)
 OPTION(BUILD_CPU_DEMOS "Build original Bullet CPU demos"        ON)
 
 
+OPTION(USE_MEMCPY "Use memcpy header" ON)
+OPTION(USE_PLACEMENT_NEW "Use new header" OFF)
+
+CONFIGURE_FILE(
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/btConfig.h.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/btConfig.h @ONLY)
 
 OPTION(INTERNAL_UPDATE_SERIALIZATION_STRUCTURES "Internal update serialization structures" OFF)
 IF (INTERNAL_UPDATE_SERIALIZATION_STRUCTURES)

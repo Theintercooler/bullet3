@@ -13,12 +13,11 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-
+#include "btConfig.h"
 #include "btHingeConstraint.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "LinearMath/btTransformUtil.h"
 #include "LinearMath/btMinMax.h"
-#include <new>
 #include "btSolverBody.h"
 
 

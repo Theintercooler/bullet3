@@ -17,6 +17,7 @@ subject to the following restrictions:
 #ifndef B3_OBJECT_ARRAY__
 #define B3_OBJECT_ARRAY__
 
+#include "btConfig.h"
 #include "b3Scalar.h" // has definitions like B3_FORCE_INLINE
 #include "b3AlignedAllocator.h"
 

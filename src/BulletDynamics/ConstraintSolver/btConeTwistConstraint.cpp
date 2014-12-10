@@ -15,12 +15,11 @@ subject to the following restrictions:
 Written by: Marcus Hennix
 */
 
-
+#include "btConfig.h"
 #include "btConeTwistConstraint.h"
 #include "BulletDynamics/Dynamics/btRigidBody.h"
 #include "LinearMath/btTransformUtil.h"
 #include "LinearMath/btMinMax.h"
-#include <new>
 
 
 
