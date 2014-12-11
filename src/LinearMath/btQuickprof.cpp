@@ -58,6 +58,12 @@ struct btClockData
 {
 
 #ifdef BT_USE_WINDOWS_TIMERS
+	typedef ULONGLONG WINAPI (*GetTickCount64Function)(void);
+	static ULONGLONG WINAPI GetTickCount64Workaround()
+	{
+		return GetTickCount();
+	}
+	GetTickCount64Function pGetTickCount64;
 	LARGE_INTEGER mClockFrequency;
 	LONGLONG mStartTick;
 	LONGLONG mPrevElapsedTime;
@@ -77,6 +83,12 @@ btClock::btClock()
 {
 	m_data = new btClockData;
 #ifdef BT_USE_WINDOWS_TIMERS
+	HMODULE hlib = LoadLibraryA("KERNEL32.DLL");
+	m_data->pGetTickCount64 = (btClockData::GetTickCount64Function)GetProcAddress(hlib, "GetTickCount64");
+	if(!m_data->pGetTickCount64)
+	{
+		m_data->pGetTickCount64 = btClockData::GetTickCount64Workaround;
+	}
 	QueryPerformanceFrequency(&m_data->mClockFrequency);
 #endif
 	reset();
@@ -105,7 +117,7 @@ void btClock::reset()
 {
 #ifdef BT_USE_WINDOWS_TIMERS
 	QueryPerformanceCounter(&m_data->mStartTime);
-	m_data->mStartTick = GetTickCount64();
+	m_data->mStartTick = m_data->pGetTickCount64();
 	m_data->mPrevElapsedTime = 0;
 #else
 #ifdef __CELLOS_LV2__
@@ -136,7 +148,7 @@ unsigned long int btClock::getTimeMilliseconds()
 		// Check for unexpected leaps in the Win32 performance counter.
 		// (This is caused by unexpected data across the PCI to ISA
 		// bridge, aka south bridge.  See Microsoft KB274323.)
-		unsigned long elapsedTicks = (unsigned long)(GetTickCount64() - m_data->mStartTick);
+		unsigned long elapsedTicks = (unsigned long)(m_data->pGetTickCount64() - m_data->mStartTick);
 		signed long msecOff = (signed long)(msecTicks - elapsedTicks);
 		if (msecOff < -100 || msecOff > 100)
 		{
@@ -194,7 +206,7 @@ unsigned long int btClock::getTimeMicroseconds()
 		// Check for unexpected leaps in the Win32 performance counter.
 		// (This is caused by unexpected data across the PCI to ISA
 		// bridge, aka south bridge.  See Microsoft KB274323.)
-		unsigned long elapsedTicks = (unsigned long)(GetTickCount64() - m_data->mStartTick);
+		unsigned long elapsedTicks = (unsigned long)(m_data->pGetTickCount64() - m_data->mStartTick);
 		signed long msecOff = (signed long)(msecTicks - elapsedTicks);
 		if (msecOff < -100 || msecOff > 100)
 		{
